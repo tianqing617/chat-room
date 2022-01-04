@@ -20,5 +20,8 @@
   "bugs": {
     "url": "https://github.com/tianqing617/chat-room/issues"
   },
-  "homepage": "https://github.com/tianqing617/chat-room#readme"
+  "homepage": "https://github.com/tianqing617/chat-room#readme",
+  "dependencies": {
+    "express": "^4.17.2"
+  }
 }

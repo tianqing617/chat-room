@@ -4,7 +4,13 @@ const { Server } = require("socket.io");
 
 const app = express();
 const server = http.createServer(app);
-const io = new Server(server);
+const io = new Server(server, {
+  cors: {
+    // 必须写上端口号，否则会有跨域问题
+    origin: "http://localhost:7071",
+    methods: ['GET', 'POST'],
+  },
+});
 
 app.get('/', (req, res) => {
   res.send('<h1>Hello world</h1>');

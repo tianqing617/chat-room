@@ -7,3 +7,15 @@
     <router-view/>
   </div>
 </template>
+
+<style lang="scss" scoped>
+#app {
+  height: 100vh;
+  padding: 10px;
+}
+#nav {
+  height: 30px;
+  line-height: 30px;
+}
+
+</style>

@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <ul class="message-list" ref="messageList">
+    <ul class="message-list" ref="chatList">
       <li v-for="(item, index) in messageList" :key="index">
         {{item}}
       </li>
@@ -53,8 +53,15 @@ export default {
     // console.log(io);
     this.init();
   },
+  beforeDestroy() {
+    this._socket = null;
+  },
   methods: {
     init() {
+      /**
+       * 切换路由，再次发送消息，"chat message"会触发两次。
+       * 这是因为切换路由和刷新页面原理相同，socket.io又注册了一个新的用户，当广播发送消息时，接收了两次。猜测的原因！
+       */
       const socket = io('http://localhost:3000');
       console.log('socket', socket);
 
@@ -64,8 +71,8 @@ export default {
         this.messageList.push(msg);
         // window.scrollTo(0, document.body.scrollHeight);
         this.$nextTick(() => {
-          const messageListEl = this.$refs.messageList;
-          messageListEl.scrollTo(0, messageListEl.scrollHeight);
+          const chatListEl = this.$refs.chatList;
+          chatListEl.scrollTo(0, chatListEl.scrollHeight);
         });
       });
 

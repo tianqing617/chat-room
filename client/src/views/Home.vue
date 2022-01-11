@@ -7,7 +7,10 @@
     </ul>
 
     <form class="message-box">
-      <textarea name="message" rows="3" cols="80" v-model="messageContent" />
+      <textarea name="message" rows="3" cols="80"
+        v-model="messageContent"
+        v-on:keyup.enter="sendMessage"
+      />
       <button @click="sendMessage">Send</button>
     </form>
   </div>

@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <ul class="message-list">
+    <ul class="message-list" ref="messageList">
       <li v-for="(item, index) in messageList" :key="index">
         {{item}}
       </li>
@@ -63,6 +63,10 @@ export default {
 
         this.messageList.push(msg);
         // window.scrollTo(0, document.body.scrollHeight);
+        this.$nextTick(() => {
+          const messageListEl = this.$refs.messageList;
+          messageListEl.scrollTo(0, messageListEl.scrollHeight);
+        });
       });
 
       this._socket = socket;
